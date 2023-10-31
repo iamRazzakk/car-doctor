@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import img2 from '../../public/images/login/login.svg'
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Singup = () => {
+    const { currentUser } = useContext(AuthContext)
     const handleSingup = e => {
         e.preventDefault()
         const form = e.target;
@@ -9,6 +12,12 @@ const Singup = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password, name);
+        currentUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error))
     }
     return (
         <div className="hero h-[80vh] bg-base-200">

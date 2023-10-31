@@ -5,7 +5,7 @@ import { CiLocationOn } from "react-icons/ci";
 
 const HomePageCard = () => {
     return (
-        <div className="w-[1140px] rounded-lg mx-auto h-[250px] flex justify-center items-center bg-[#151515]">
+        <div className="w-[1140px] rounded-lg mx-auto h-[250px] md:flex md:justify-center md:items-center bg-[#151515]">
             {/* first one */}
             <div className="flex items-center md:mr-4">
                 <div className=" md:ml-4">
