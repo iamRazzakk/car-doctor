@@ -2,15 +2,20 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Provider/AuthProvider';
 import BookingsTable from './BookingsTable';
 import { data } from 'autoprefixer';
+import axios from 'axios';
 
 const Bookings = () => {
     const { user } = useContext(AuthContext)
     const [booking, setBooking] = useState([])
     const url = `http://localhost:5000/bookings?email=${user?.email}`
     useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setBooking(data))
+        axios.get(url, { withCredentials: true })
+            .then(res => {
+                setBooking(res.data)
+            })
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(data => setBooking(data))
     }, [url])
     const handleDelete = id => {
         const proceed = confirm("Are you sure you want to delete")
